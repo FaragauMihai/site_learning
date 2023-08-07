@@ -3,9 +3,11 @@ import { useState } from "react";
 // import Button from "./components/Button";
 // import Tasta from "./components/Tasta";
 // import Message from "./Message";
-import produce from "immer";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
+import produce from "immer";
+import Expandeble from "./components/Expandeble";
+import Form from "./components/Form";
 
 function App() {
   // const [firstName, setFirsttName] = useState("");
@@ -55,16 +57,6 @@ function App() {
 
   // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
 
-  //   <div>
-  //   <NavBar cartItemsCount={cartItems.length}></NavBar>
-  //   <Cart
-  //     cartItems={cartItems}
-  //     onClear={() => {
-  //       setCartItems([]);
-  //     }}
-  //   ></Cart>
-  // </div>
-
   // const [cart, setCart] = useState({
   //   discount: 0.1,
   //   items: [
@@ -86,12 +78,22 @@ function App() {
   //   adress: { ...customer.adress, zipCode: 112 },
   // };
 
+  //   <div>
+  //   <NavBar cartItemsCount={cartItems.length}></NavBar>
+  //   <Cart
+  //     cartItems={cartItems}
+  //     onClear={() => {
+  //       setCartItems([]);
+  //     }}
+  //   ></Cart>
+  // </div>
+
+  // <Expandeble>Aloha buei!</Expandeble>
+
   return (
-    <>
-      <div>
-        <ExpandableText></ExpandableText>
-      </div>
-    </>
+    <div>
+      <Form />
+    </div>
   );
 }
 
