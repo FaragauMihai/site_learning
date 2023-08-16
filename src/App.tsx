@@ -1,13 +1,17 @@
 import { useState } from "react";
+import categories from "./components/expense-tracker/categories";
+import ExpenseList from "./components/expense-tracker/components/ExpenseList";
+import ExpenseFilter from "./components/expense-tracker/components/ExpenseFilter";
+import ExpenseForm from "./components/expense-tracker/components/ExpenseForm";
 // import Alert from "./components/Alert";
 // import Button from "./components/Button";
 // import Tasta from "./components/Tasta";
 // import Message from "./Message";
-import NavBar from "./components/NavBar";
-import Cart from "./components/Cart";
-import produce from "immer";
-import Expandeble from "./components/Expandeble";
-import Form from "./components/Form";
+// import NavBar from "./components/NavBar";
+// import Cart from "./components/Cart";
+// import produce from "immer";
+// import Expandeble from "./components/Expandeble";
+// import FormProject from "./components/expense-tracker/FromProject";
 
 function App() {
   // const [firstName, setFirsttName] = useState("");
@@ -90,9 +94,36 @@ function App() {
 
   // <Expandeble>Aloha buei!</Expandeble>
 
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [expenses, setExpenses] = useState([
+    { id: 1, description: "Lapte", amount: 5, category: "Utilities" },
+    { id: 2, description: "Branza", amount: 5, category: "Entertainment" },
+    { id: 3, description: "Cas", amount: 5, category: "Grocieries" },
+  ]);
+
+  const visibleExpenses = selectedCategory
+    ? expenses.filter((e) => e.category === selectedCategory)
+    : expenses;
+
   return (
     <div>
-      <Form />
+      <div className="mb-5">
+        <ExpenseForm
+          onSubmit={(expense) =>
+            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
+          }
+        ></ExpenseForm>
+      </div>
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
+      ></ExpenseList>
     </div>
   );
 }
